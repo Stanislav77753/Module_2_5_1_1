@@ -23,7 +23,6 @@ public class ProductController {
 
     @RequestMapping(value = "products", method = RequestMethod.GET)
     public String listProducts(Model model){
-        System.out.println("list");
         model.addAttribute("product", new Product());
         model.addAttribute("listProducts", this.productService.getProducts());
         return "products";
@@ -31,12 +30,9 @@ public class ProductController {
 
     @RequestMapping(value = "/products/add", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("product") Product product){
-        System.out.println("add");
         if(product.getId() == null){
-            System.out.println("add1");
             this.productService.addProduct(product);
         }else {
-            System.out.println("add2");
             this.productService.updateProduct(product);
         }
 
